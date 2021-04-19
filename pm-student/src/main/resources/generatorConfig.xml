@@ -1,0 +1,50 @@
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+
+    <!--  引用资源配置文件  -->
+    <properties resource="application.properties"/>
+
+    <context id="Mysql" targetRuntime="MyBatis3Simple" defaultModelType="flat">
+
+        <property name="javaFileEncoding" value="UTF-8"/>
+        <property name="useMapperCommentGenerator" value="false"/>
+
+        <plugin type="tk.mybatis.mapper.generator.MapperPlugin">
+            <!-- 配置后生成的 Mapper 接口都会自动继承接口 value: 需要继承的接口, 该接口不可以在 MapperScan 扫描范围中-->
+            <property name="mappers" value="com.pzhu.pm.student.IBaseCommMapper"/>
+            <!-- caseSensitive默认false，当数据库表名区分大小写时，可以将该属性设置为true -->
+            <property name="caseSensitive" value="true"/>
+            <property name="forceAnnotation" value="true"/>
+        </plugin>
+
+
+        <!-- 数据库连接属性: -->
+        <jdbcConnection
+                driverClass="${spring.datasource.driver-class-name}"
+                connectionURL="${spring.datasource.url}"
+                userId="${spring.datasource.username}"
+                password="${spring.datasource.password}"/>
+
+        <!-- MyBatis 生成器生成 Model -->
+        <javaModelGenerator targetPackage="com.example.demo.demo.po"
+                            targetProject="src/main/java"/>
+
+        <!-- MyBatis 生成器生成 Mapper XML -->
+        <sqlMapGenerator targetPackage="mapper"
+                         targetProject="src/main/resources"/>
+
+        <!-- MyBatis 生成器生成 Mapper class -->
+        <javaClientGenerator targetPackage="com.example.demo.demo.mapper"
+                             targetProject="src/main/java"
+                             type="XMLMAPPER"/>
+
+        <!--   需要生成的表名,  % 为通配符, -->
+        <table tableName="%">
+            <generatedKey column="id"
+                          sqlStatement="select SEQ_{1}.nextval from %"
+                          identity="false" type="pre"/>
+        </table>
+    </context>
+</generatorConfiguration>
