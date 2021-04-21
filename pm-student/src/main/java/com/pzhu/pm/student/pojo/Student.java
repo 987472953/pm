@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.ToString;
 import lombok.experimental.Accessors;
 
 import javax.persistence.Column;
@@ -20,6 +21,7 @@ import javax.persistence.Id;
  * @since 2021-04-04
  */
 @Data
+@ToString
 public class Student implements Serializable {
 
     @Id

@@ -1,6 +1,10 @@
 package com.pzhu.pm.student.service;
 
 import com.pzhu.pm.student.pojo.SMember;
+import com.pzhu.pm.student.pojo.Student;
+import com.pzhu.pm.student.pojo.StudentInfoVO;
+
+import java.util.List;
 
 /**
  *
@@ -16,4 +20,12 @@ public interface StudentService {
      * @return
      */
     SMember login(String username, String password);
+
+    /**
+     * 根据学号查询学生详细信息
+     * @param studentNo
+     * @return
+     */
+    List<StudentInfoVO> selectInfo(String studentNo);
+    public Student test();
 }

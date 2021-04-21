@@ -52,18 +52,6 @@
             </dependency>
 
             <dependency>
-                <groupId>com.alibaba</groupId>
-                <artifactId>dubbo</artifactId>
-                <version>${dubbo.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.101tec</groupId>
-                <artifactId>zkclient</artifactId>
-                <version>${zkclient.version}</version>
-            </dependency>
-
-            <dependency>
                 <groupId>com.gitee.reger</groupId>
                 <artifactId>spring-boot-starter-dubbo</artifactId>
                 <version>${dubbo-starter.version}</version>
@@ -74,7 +62,6 @@
                 <artifactId>mybatis-spring-boot-starter</artifactId>
                 <version>${mybatis.version}</version>
             </dependency>
-
 
             <dependency>
                 <groupId>net.sourceforge.nekohtml</groupId>
@@ -113,7 +100,6 @@
                 <artifactId>commons-lang3</artifactId>
                 <version>${commons-lang3.version}</version>
             </dependency>
-
 
             <dependency>
                 <groupId>tk.mybatis</groupId>

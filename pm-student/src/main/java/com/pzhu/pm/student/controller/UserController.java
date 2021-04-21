@@ -1,11 +1,15 @@
 package com.pzhu.pm.student.controller;
 
 import com.pzhu.pm.student.pojo.SMember;
+import com.pzhu.pm.student.pojo.Student;
+import com.pzhu.pm.student.pojo.StudentInfoVO;
 import com.pzhu.pm.student.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * @author QYstart
@@ -36,18 +40,18 @@ public class UserController {
         }
     }
 
-    @GetMapping("/user")
+    @GetMapping("/test")
     @ResponseBody
     public String findUser() {
-
-        return "test";
+        Student test = studentService.test();
+        return test.toString();
     }
 
     @GetMapping("/course/{studentNo}")
     @ResponseBody
     public String getCourse(@PathVariable String studentNo){
-        //studentService.selectInfo();
-        return "";
+        List<StudentInfoVO> studentInfo = studentService.selectInfo(studentNo);
+        return studentInfo.toString();
     }
 
 }
