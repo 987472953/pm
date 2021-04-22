@@ -32,7 +32,7 @@ public class UserController {
 
         SMember smember = studentService.login(username, password);
 
-        if (smember!=null) {
+        if (smember != null) {
             model.addAttribute("smember", smember);
             return "index";
         } else {
@@ -48,10 +48,11 @@ public class UserController {
     }
 
     @GetMapping("/course/{studentNo}")
-    @ResponseBody
-    public String getCourse(@PathVariable String studentNo){
+    public String getCourse(@PathVariable String studentNo, Model model) {
         List<StudentInfoVO> studentInfo = studentService.selectInfo(studentNo);
-        return studentInfo.toString();
-    }
+        model.addAttribute("studentInfoList", studentInfo);
+        return "index";
+}
 
 }
+
