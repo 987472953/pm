@@ -6,5 +6,24 @@
 </head>
 <body>
 <span th:text="${smember}">用户信息</span>
+<table>
+    <tr>
+       <td>课程号</td>
+       <td>课程名</td>
+       <td>签到数</td>
+       <td>总分</td>
+       <td>项目</td>
+    </tr>
+    <tr th:each="studentInfo:${studentInfoList}">
+        <td th:text="${studentInfo.courseNo}"></td>
+        <td th:text="${studentInfo.courseName}"></td>
+        <td th:text="${studentInfo.signCount}"></td>
+        <td th:text="${studentInfo.mark}"></td>
+        <td th:text="${studentInfo.project}"></td>
+    </tr>
+    <tr>
+        <td></td>
+    </tr>
+</table>
 </body>
 </html>

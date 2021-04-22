@@ -47,6 +47,9 @@ public class UserController {
         return test.toString();
     }
 
+    /**
+     * 学生已选课程
+     */
     @GetMapping("/course/{studentNo}")
     public String getCourse(@PathVariable String studentNo, Model model) {
         List<StudentInfoVO> studentInfo = studentService.selectInfo(studentNo);
