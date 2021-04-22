@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.pzhu.pm.student.mapper.StudentMapper">
+
+    <resultMap id="studentInfo" type="com.pzhu.pm.student.pojo.StudentInfoVO" autoMapping="true">
+
+    </resultMap>
+
+    <!--StudentInfoVO selectInfo(@Param("studentNo") String studentNo);-->
+    <select id="selectInfo" resultType="com.pzhu.pm.student.pojo.StudentInfoVO">
+        select s.student_no,sc.course_no,sign_count,mark,project,c.name as course_name  from student s
+        LEFT JOIN student_course sc
+        on s.student_no = sc.studnet_no
+        LEFT JOIN course c on sc.course_no = c.course_no
+        where s.student_no = #{studentNo};
+    </select>
+    <select id="selectSS" resultType="com.pzhu.pm.student.pojo.Student">
+        select * from student where id = 1;
+    </select>
+</mapper>
