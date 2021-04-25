@@ -6,7 +6,7 @@
 
     </resultMap>
 
-    <!--StudentInfoVO selectInfo(@Param("studentNo") String studentNo);-->
+    <!--Stu dentInfoVO selectInfo(@Param("studentNo") String studentNo);-->
     <select id="selectInfo" resultType="com.pzhu.pm.student.pojo.StudentInfoVO">
         select s.student_no,sc.course_no,sign_count,mark,project,c.name as course_name  from student s
         LEFT JOIN student_course sc

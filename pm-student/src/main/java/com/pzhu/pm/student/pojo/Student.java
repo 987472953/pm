@@ -36,8 +36,14 @@ public class Student implements Serializable {
     private String studentNo;
 
     @Column
-    private Integer courseNo;
+    private Integer majorNo;
 
     @Column
     private Integer gradeNo;
+
+    @Column
+    private Integer age;
+
+    @Column
+    private Integer sex;
 }

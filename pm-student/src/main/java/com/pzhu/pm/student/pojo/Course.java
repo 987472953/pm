@@ -30,6 +30,12 @@ public class Course {
     private Integer count;
 
     @Column
+    private Integer grade;
+
+    @Column
+    private Integer majorNo;
+
+    @Column
     private Integer limit;
 
     @Column

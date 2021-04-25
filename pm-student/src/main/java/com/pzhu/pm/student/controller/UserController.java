@@ -55,7 +55,7 @@ public class UserController {
         List<StudentInfoVO> studentInfo = studentService.selectInfo(studentNo);
         model.addAttribute("studentInfoList", studentInfo);
         return "index";
-}
+    }
 
 }
 
