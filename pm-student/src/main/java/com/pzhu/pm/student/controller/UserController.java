@@ -1,12 +1,11 @@
 package com.pzhu.pm.student.controller;
 
+import com.pzhu.pm.student.common.Result;
 import com.pzhu.pm.student.pojo.SMember;
-import com.pzhu.pm.student.pojo.Student;
 import com.pzhu.pm.student.pojo.StudentInfoVO;
 import com.pzhu.pm.student.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,35 +25,26 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public String doLogin(@RequestParam String username,
-                          @RequestParam String password, Model model) {
-        if (username == null || password == null) return "login";
+    public Result doLogin(@RequestParam String account,
+                          @RequestParam String password) {
+        if (account == null || password == null) return Result.error().message("用户名或密码为空");
 
-        SMember smember = studentService.login(username, password);
+        //TODO 加密，将错误信息放入model重新转到login并显示错误
+        SMember smember = studentService.login(account, password);
 
-        if (smember != null) {
-            model.addAttribute("smember", smember);
-            return "index";
-        } else {
-            return "login";
-        }
-    }
-
-    @GetMapping("/test")
-    @ResponseBody
-    public String findUser() {
-        Student test = studentService.test();
-        return test.toString();
+        return Result.ok().data("user", smember);
     }
 
     /**
      * 学生已选课程
      */
     @GetMapping("/course/{studentNo}")
-    public String getCourse(@PathVariable String studentNo, Model model) {
+    @ResponseBody
+    public Result getCourse(@PathVariable String studentNo) {
+        if (studentNo == null || studentNo.isEmpty())
+            return Result.error().message("学号为空");
         List<StudentInfoVO> studentInfo = studentService.selectInfo(studentNo);
-        model.addAttribute("studentInfoList", studentInfo);
-        return "index";
+        return Result.ok().data("studentInfo", studentInfo);
     }
 
 }

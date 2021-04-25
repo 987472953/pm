@@ -30,17 +30,17 @@ public class Course {
     private Integer count;
 
     @Column
-    private Integer grade;
-
-    @Column
     private Integer majorNo;
 
     @Column
-    private Integer limit;
+    private Integer limitNumber;
 
     @Column
     private Date endTime;
 
     @Column
     private Boolean must;
+
+    @Column
+    private Integer grade;
 }

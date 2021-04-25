@@ -39,7 +39,7 @@ public class Student implements Serializable {
     private Integer majorNo;
 
     @Column
-    private Integer gradeNo;
+    private Integer grade;
 
     @Column
     private Integer age;

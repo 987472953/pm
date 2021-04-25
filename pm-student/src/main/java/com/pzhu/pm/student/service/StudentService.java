@@ -15,11 +15,11 @@ public interface StudentService {
 
     /**
      * 登录验证
-     * @param username
+     * @param account
      * @param password
      * @return
      */
-    SMember login(String username, String password);
+    SMember login(String account, String password);
 
     /**
      * 根据学号查询学生详细信息

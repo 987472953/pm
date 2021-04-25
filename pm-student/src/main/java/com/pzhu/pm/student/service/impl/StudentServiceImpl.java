@@ -29,10 +29,10 @@ public class StudentServiceImpl implements StudentService {
     private SMemberMapper sMemberMapper;
 
     @Override
-    public SMember login(String username, String password) {
+    public SMember login(String account, String password) {
 
         SMember smember = new SMember();
-        smember.setAccount(username);
+        smember.setAccount(account);
         smember.setPassword(password);
         SMember result = sMemberMapper.selectOne(smember);
         if (result != null){
