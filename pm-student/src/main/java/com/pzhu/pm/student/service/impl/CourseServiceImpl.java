@@ -23,12 +23,13 @@ public class CourseServiceImpl implements CourseService {
 
         Example example = new Example(Course.class);
         Example.Criteria criteria = example.createCriteria();
-        if(grade!=null){
-            criteria.andEqualTo("grade",grade);
+        if (grade != null) {
+            criteria.andEqualTo("grade", grade);
         }
-        if(majorNo!=null){
-            criteria.andEqualTo("majorNo",majorNo);
+        if (majorNo != null) {
+            criteria.andEqualTo("majorNo", majorNo);
         }
         return courseMapper.selectByExample(example);
     }
+
 }

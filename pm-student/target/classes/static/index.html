@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<!-- 引入样式 -->
+		<!-- 引入组件库 -->
+		<!-- import JavaScript -->
+    <link rel="stylesheet" href="./index.css">
+		<style>
+			.el-col-12{
+				width: 16%;
+			}
+			.content{
+				position: absolute;
+				top: 0;
+				left: 20%;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<el-row class="tac">
+			  
+			  <el-col :span="12">
+			    <h5>自定义颜色</h5>
+			    <el-menu
+			      default-active="2"
+			      class="el-menu-vertical-demo"
+			      @open="handleOpen"
+			      @close="handleClose"
+			      background-color="#545c64"
+			      text-color="#fff"
+			      active-text-color="#ffd04b">
+			      <el-submenu index="1">
+			        <template slot="title">
+			          <i class="el-icon-location"></i>
+			          <span>导航一</span>
+			        </template>
+			        <el-menu-item-group>
+			          <template slot="title">分组一</template>
+			          <el-menu-item index="1-1" @click="toHome1">选项1</el-menu-item>
+			          <el-menu-item index="1-2" @click="toHome2">选项2</el-menu-item>
+			          <el-menu-item index="1-3" @click="toHome3">选项3</el-menu-item>
+			          <el-menu-item index="1-4-1" @click="toHome4">选项4</el-menu-item>
+			        </el-submenu>
+			      </el-submenu>
+			      <el-menu-item index="2">
+			        <i class="el-icon-menu"></i>
+			        <span slot="title">导航二</span>
+			      </el-menu-item>
+			      <el-menu-item index="3" disabled>
+			        <i class="el-icon-document"></i>
+			        <span slot="title">导航三</span>
+			      </el-menu-item>
+			      <el-menu-item index="4">
+			        <i class="el-icon-setting"></i>
+			        <span slot="title">导航四</span>
+			      </el-menu-item>
+			    </el-menu>
+			  </el-col>
+			</el-row>
+			
+			<div class="content">
+				<router-view></router-view>
+			</div>
+		</div>
+		<template id="Home1">
+			<div><div>{{name}}</div></div>
+		</template>
+		<template id="Home2">
+			<div>导航2</div>
+		</template>
+		<template id="Home3">
+			<div>导航3</div>
+		</template>
+		<template id="Home4">
+			<div>导航4</div>
+		</template>
+		<template id="Home5">
+			<div>导航5</div>
+		</template>
+	</body>
+	<script src="./vue.js"></script>
+	<script src="./ele.js"></script>
+	<script src="./vue-router.js"></script>
+	<script>
+		let Home1 = {
+			template:'#Home1',
+			data:function(){
+				return {
+					name:'12'
+				}
+			}
+		}
+		let Home2 = {
+			template:'#Home2',
+		}
+		let Home3 = {
+			template:'#Home3',
+		}
+		let Home4 = {
+			template:'#Home4',
+		}
+		let Home5 = {
+			template:'#Home5',
+		}
+		// 2. 定义路由
+		// 每个路由应该映射一个组件。 其中"component" 可以是
+		// 通过 Vue.extend() 创建的组件构造器，
+		// 或者，只是一个组件配置对象。
+		// 我们晚点再讨论嵌套路由。
+		const routes = [
+		  { path: '/home1', component: Home1 },
+		  { path: '/home2', component: Home2 },
+		  { path: '/home3', component: Home3 },
+		  { path: '/home4', component: Home4 },
+		  { path: '/home5', component: Home5 }
+		]
+		
+		// 3. 创建 router 实例，然后传 `routes` 配置
+		// 你还可以传别的配置参数, 不过先这么简单着吧。
+		const router = new VueRouter({
+		  routes // (缩写) 相当于 routes: routes
+		})
+		new Vue({
+			el:'#app',
+			router,
+			data:{
+				name:"zs"
+			},
+			methods: {
+			  toHome1(){
+				  router.push({ path: 'home1' })
+			  },
+			  toHome2(){
+			  		router.push({ path: 'home2' })
+			  },
+			  toHome3(){
+			  		router.push({ path: 'home3' })
+			  },
+			  toHome4(){
+			  		router.push({ path: 'home4' })
+			  },
+			  toHome5(){
+			  		router.push({ path: 'home5' })
+			  },
+			  handleOpen:(key, keyPath)=>{
+			    // router.push({ path: 'home' })
+			  },
+			  handleClose(key, keyPath) {
+			    console.log(key, keyPath);
+			  }
+			}
+		})
+	</script>
+</html>

@@ -43,4 +43,5 @@ public class Course {
 
     @Column
     private Integer grade;
+
 }
