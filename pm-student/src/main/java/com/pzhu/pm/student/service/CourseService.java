@@ -1,6 +1,7 @@
 package com.pzhu.pm.student.service;
 
 import com.pzhu.pm.student.pojo.Course;
+import com.pzhu.pm.student.pojo.StudentCourse;
 
 import java.util.List;
 
@@ -15,5 +16,10 @@ public interface CourseService {
      * @return
      */
     List<Course> findCourse(Integer grade, Integer majorNo);
-
+    /**
+     * 根据学号与课程号进行退选操作
+     *  @param courseNo
+     * @param studentNo
+     */
+    StudentCourse removeCourseByStu(String courseNo, String studentNo);
 }

@@ -3,6 +3,7 @@ package com.pzhu.pm.student.controller;
 import com.pzhu.pm.student.common.Result;
 import com.pzhu.pm.student.config.Swagger2Config;
 import com.pzhu.pm.student.pojo.SMember;
+import com.pzhu.pm.student.pojo.StudentCourse;
 import com.pzhu.pm.student.pojo.StudentInfoVO;
 import com.pzhu.pm.student.service.StudentService;
 import io.swagger.annotations.Api;
@@ -59,6 +60,10 @@ public class UserController {
         List<StudentInfoVO> studentInfo = studentService.selectInfo(studentNo);
         return Result.ok().data("studentInfo", studentInfo);
     }
+
+
+
+
 
 }
 

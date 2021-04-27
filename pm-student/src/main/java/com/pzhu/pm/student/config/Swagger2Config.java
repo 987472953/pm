@@ -16,6 +16,7 @@ public class Swagger2Config {
 
     public static final String TAG_1 = "学生管理";
     public static final String TAG_2 = "学生课程管理";
+    public static final String TAG_3 = "教师";
 
     @Bean
     public Docket webApiConfig(){
@@ -26,7 +27,8 @@ public class Swagger2Config {
                 .select()
                 .build()
                 .tags(new Tag(TAG_1,"学生管理Controller"))
-                .tags(new Tag(TAG_2,"学生课程管理Controller"));
+                .tags(new Tag(TAG_2,"学生课程管理Controller"))
+                .tags(new Tag(TAG_3,"教师与课程管理Controller"));
 
     }
 

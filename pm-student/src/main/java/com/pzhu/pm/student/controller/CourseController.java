@@ -4,14 +4,12 @@ import com.pzhu.pm.student.common.Result;
 import com.pzhu.pm.student.config.Swagger2Config;
 import com.pzhu.pm.student.pojo.Course;
 import com.pzhu.pm.student.pojo.Student;
+import com.pzhu.pm.student.pojo.StudentCourse;
 import com.pzhu.pm.student.service.CourseService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -38,9 +36,18 @@ public class CourseController {
 
 
     @GetMapping("major")
+    @ApiOperation(value = "查询所有专业")
     public Result allMajor(){
 //        courseService.findMajors();
         return Result.ok();
     }
 
+    @DeleteMapping("/stuCourse")
+    @ApiOperation(value = "退选课程")
+    public Result removeCourseByStuNo(@RequestParam String courseNo, @RequestParam String studentNo){
+
+        StudentCourse studentCourse =  courseService.removeCourseByStu(courseNo, studentNo);
+
+        return Result.ok();
+    }
 }

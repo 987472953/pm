@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.pzhu.pm.student.mapper.TeacherMapper">
+
+
+    <select id="selectByCourseNo" resultType="com.pzhu.pm.student.pojo.Teacher">
+        select * from teacher where teacher_no
+                              in (select teacher_no from teacher_course where course_no = #{param1})
+    </select>
+
+</mapper>
