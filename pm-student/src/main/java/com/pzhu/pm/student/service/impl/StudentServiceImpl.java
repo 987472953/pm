@@ -1,9 +1,11 @@
 package com.pzhu.pm.student.service.impl;
 
 import com.pzhu.pm.student.mapper.SMemberMapper;
+import com.pzhu.pm.student.mapper.StudentCourseMapper;
 import com.pzhu.pm.student.mapper.StudentMapper;
 import com.pzhu.pm.student.pojo.SMember;
 import com.pzhu.pm.student.pojo.Student;
+import com.pzhu.pm.student.pojo.StudentCourse;
 import com.pzhu.pm.student.pojo.StudentInfoVO;
 import com.pzhu.pm.student.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +30,9 @@ public class StudentServiceImpl implements StudentService {
     @Autowired
     private SMemberMapper sMemberMapper;
 
+    @Autowired
+    private StudentCourseMapper studentCourseMapper;
+
     @Override
     public SMember login(String account, String password) {
 
@@ -48,7 +53,24 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public Student test(){
-        return studentMapper.selectSS();
+    public Integer toSign(String studentNo, Integer courseNo) {
+
+        //获得待签到学生
+        StudentCourse studentCourse = new StudentCourse();
+        studentCourse.setStudentNo(studentNo);
+        studentCourse.setCourseNo(courseNo);
+        StudentCourse result = studentCourseMapper.selectOne(studentCourse);
+
+        Integer signCount = result.getSignCount();
+        if(result != null){
+            //更新签到次数
+            studentCourse.setId(result.getId());
+            studentCourse.setSignCount(++signCount);
+            studentCourseMapper.updateByPrimaryKeySelective(studentCourse);
+            return signCount;
+        }
+
+        return -1;
     }
+
 }

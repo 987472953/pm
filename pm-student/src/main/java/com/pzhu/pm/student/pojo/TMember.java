@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.ToString;
 
 import javax.persistence.Column;
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -12,7 +13,7 @@ import java.util.Date;
  */
 @Data
 @ToString
-public class TMember {
+public class TMember implements Serializable {
     @Column
     private Integer id;
 

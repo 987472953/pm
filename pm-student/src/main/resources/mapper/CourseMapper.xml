@@ -5,6 +5,6 @@
 
     <!--        StudentCourse selectSC(String courseNo, String studentNo);-->
     <select id="selectSC" resultType="com.pzhu.pm.student.pojo.StudentCourse">
-      select * from student_course where course_no = #{param1} and student_no = #{param2}
+     select * from student_course where course_no = #{param1} and student_no = #{param2};
     </select>
 </mapper>

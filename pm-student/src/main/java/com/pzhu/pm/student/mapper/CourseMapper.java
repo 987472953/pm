@@ -2,6 +2,7 @@ package com.pzhu.pm.student.mapper;
 
 import com.pzhu.pm.student.pojo.Course;
 import com.pzhu.pm.student.pojo.StudentCourse;
+import org.apache.ibatis.annotations.Param;
 import tk.mybatis.mapper.common.Mapper;
 
 /**
@@ -10,5 +11,5 @@ import tk.mybatis.mapper.common.Mapper;
  */
 public interface CourseMapper extends Mapper<Course> {
 
-    StudentCourse selectSC(String courseNo, String studentNo);
+    StudentCourse selectSC(@Param("courseNo") Integer courseNo, @Param("studentNo") String studentNo);
 }

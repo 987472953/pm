@@ -40,14 +40,33 @@ public class CourseServiceImpl implements CourseService {
     @Override
     public StudentCourse removeCourseByStu(String courseNo, String studentNo) {
 
-        StudentCourse studentCourse =  courseMapper.selectSC(courseNo, studentNo);
+        StudentCourse studentCourse = courseMapper.selectSC(Integer.valueOf(courseNo), studentNo);
 
         //课程存在但课程有成绩时不能删除，课程存在且成绩为初始值时可退
-        if(studentCourse!=null&&studentCourse.getMark()==null||studentCourse.getMark() <=0){
+        if (studentCourse != null &&
+                (studentCourse.getMark() == null || studentCourse.getMark() <= 0)) {
             int delete = studentCourseMapper.delete(studentCourse);
-            if(delete>0)return studentCourse;
+            if (delete > 0) return studentCourse;
         }
         return null;
+    }
+
+    @Override
+    public StudentCourse takeCourse(String studentNo, Integer courseNo) {
+
+        StudentCourse checked = courseMapper.selectSC(courseNo, studentNo);
+        if (checked != null) {
+            //已经选了该课程
+            return null;
+        }
+
+        StudentCourse studentCourse = new StudentCourse();
+        studentCourse.setSignCount(0);
+        studentCourse.setCourseNo(courseNo);
+        studentCourse.setStudentNo(studentNo);
+        studentCourse.setMark(0.0);
+        int insert = studentCourseMapper.insertSelective(studentCourse);
+        return studentCourse;
     }
 
 }

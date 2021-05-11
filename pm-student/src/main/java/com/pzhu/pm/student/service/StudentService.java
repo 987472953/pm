@@ -27,5 +27,11 @@ public interface StudentService {
      * @return
      */
     List<StudentInfoVO> selectInfo(String studentNo);
-    public Student test();
+
+    /**
+     * 签到接口
+     * @param studentNo
+     * @return
+     */
+    Integer toSign(String studentNo, Integer courseNo);
 }

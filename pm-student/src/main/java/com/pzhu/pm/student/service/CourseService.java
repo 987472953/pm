@@ -22,4 +22,12 @@ public interface CourseService {
      * @param studentNo
      */
     StudentCourse removeCourseByStu(String courseNo, String studentNo);
+
+    /**
+     * 选课
+     * @param studentNo
+     * @param courseNo
+     * @return
+     */
+    StudentCourse takeCourse(String studentNo, Integer courseNo);
 }

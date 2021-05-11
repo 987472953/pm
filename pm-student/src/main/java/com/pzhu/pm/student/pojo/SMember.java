@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -13,7 +14,7 @@ import java.util.Date;
  * @date 2021/4/16
  */
 @Data
-public class SMember {
+public class SMember implements Serializable {
 
     @Id
     @Column

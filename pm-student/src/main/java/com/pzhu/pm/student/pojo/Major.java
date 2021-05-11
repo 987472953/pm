@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.ToString;
 
 import javax.persistence.Column;
+import java.io.Serializable;
 
 /**
  * @author QYstart
@@ -11,7 +12,7 @@ import javax.persistence.Column;
  */
 @Data
 @ToString
-public class Major {
+public class Major implements Serializable {
 
     @Column
     private Integer id;

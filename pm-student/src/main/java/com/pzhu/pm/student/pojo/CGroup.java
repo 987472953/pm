@@ -6,13 +6,14 @@ import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.io.Serializable;
 
 /**
  * @author QYstart
  * @date 2021/4/21
  */
 @Data
-public class CGroup {
+public class CGroup implements Serializable {
 
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)

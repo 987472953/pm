@@ -3,13 +3,14 @@ package com.pzhu.pm.student.pojo;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * @author QYstart
  * @date 2021/4/21
  */
 @Data
-public class StudentCourse {
+public class StudentCourse implements Serializable {
 
     @Id
     @Column

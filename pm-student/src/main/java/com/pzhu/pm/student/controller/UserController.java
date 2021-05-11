@@ -1,5 +1,6 @@
 package com.pzhu.pm.student.controller;
 
+import com.pzhu.pm.student.common.Cache;
 import com.pzhu.pm.student.common.Result;
 import com.pzhu.pm.student.config.Swagger2Config;
 import com.pzhu.pm.student.pojo.SMember;
@@ -9,6 +10,8 @@ import com.pzhu.pm.student.service.StudentService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,6 +27,9 @@ import java.util.List;
 public class UserController {
     @Autowired
     private StudentService studentService;
+
+    @Autowired
+    private StringRedisTemplate stringRedisTemplate;
 
     @GetMapping("/login")
     @ApiOperation(value = "重定向到登录页面")
@@ -44,6 +50,7 @@ public class UserController {
         if (smember == null) {
             return Result.error().message("用户不存在");
         } else {
+//            stringRedisTemplate.opsForHash().put("login", "student:" + smember.getStudentNo(), smember.toString());
             return Result.ok().data("user", smember);
         }
     }
@@ -58,6 +65,7 @@ public class UserController {
         if (studentNo == null || studentNo.isEmpty())
             return Result.error().message("学号为空");
         List<StudentInfoVO> studentInfo = studentService.selectInfo(studentNo);
+        Cache.setCached("studentInfo", studentInfo);
         return Result.ok().data("studentInfo", studentInfo);
     }
 

@@ -5,6 +5,7 @@ import lombok.ToString;
 
 import javax.persistence.Column;
 import javax.persistence.Transient;
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -13,7 +14,7 @@ import java.util.List;
  */
 @Data
 @ToString
-public class StudentInfoVO {
+public class StudentInfoVO implements Serializable {
     private String studentNo;
 
     private Integer courseNo;

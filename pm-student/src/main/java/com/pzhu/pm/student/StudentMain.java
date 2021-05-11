@@ -17,7 +17,6 @@ import tk.mybatis.spring.annotation.MapperScan;
 @MapperScan(basePackages = "com.pzhu.pm.student.mapper")
 public class StudentMain {
     public static void main(String[] args) {
-//        AnnotationConfigApplicationContext a = new AnnotationConfigApplicationContext(Config.class);
         SpringApplication.run(StudentMain.class, args);
     }
 }
