@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.entity.Example;
 
 import java.util.List;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * @author QYstart
@@ -54,19 +55,36 @@ public class CourseServiceImpl implements CourseService {
     @Override
     public StudentCourse takeCourse(String studentNo, Integer courseNo) {
 
-        StudentCourse checked = courseMapper.selectSC(courseNo, studentNo);
-        if (checked != null) {
-            //已经选了该课程
-            return null;
+        ReentrantLock lock = new ReentrantLock();
+        lock.lock();
+        try {
+            StudentCourse checked = courseMapper.selectSC(courseNo, studentNo);
+            if (checked != null) {
+                //已经选了该课程
+                return null;
+            }
+            Course course = new Course();
+            course.setCourseNo(courseNo);
+            course = courseMapper.selectOne(course);
+            if (course.getCount() >= course.getLimitNumber()) {
+                //选课人数达上限
+                return null;
+            }
+
+            //选课
+            StudentCourse studentCourse = new StudentCourse();
+            studentCourse.setSignCount(0);
+            studentCourse.setCourseNo(courseNo);
+            studentCourse.setStudentNo(studentNo);
+            studentCourse.setMark(0.0);
+            int insert = studentCourseMapper.insertSelective(studentCourse);
+            return studentCourse;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            lock.unlock();
         }
 
-        StudentCourse studentCourse = new StudentCourse();
-        studentCourse.setSignCount(0);
-        studentCourse.setCourseNo(courseNo);
-        studentCourse.setStudentNo(studentNo);
-        studentCourse.setMark(0.0);
-        int insert = studentCourseMapper.insertSelective(studentCourse);
-        return studentCourse;
+        return null;
     }
-
 }

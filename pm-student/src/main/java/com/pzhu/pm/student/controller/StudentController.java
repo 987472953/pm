@@ -4,6 +4,7 @@ package com.pzhu.pm.student.controller;
 import com.pzhu.pm.student.common.Result;
 import com.pzhu.pm.student.pojo.Student;
 import com.pzhu.pm.student.service.StudentService;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,6 +27,7 @@ public class StudentController {
     private StudentService studentService;
 
     @PostMapping("sign")
+    @ApiOperation("课程签到")
     public Result sign(String studentNo, Integer courseNo){
         Integer signCount = studentService.toSign(studentNo, courseNo);
         if(signCount>0){

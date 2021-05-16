@@ -1,6 +1,6 @@
 package com.pzhu.pm.student.controller;
 
-import com.pzhu.pm.student.common.Cache;
+
 import com.pzhu.pm.student.common.Result;
 import com.pzhu.pm.student.config.Swagger2Config;
 import com.pzhu.pm.student.pojo.Course;

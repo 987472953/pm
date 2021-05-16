@@ -44,7 +44,7 @@ public class UserController {
                           @RequestParam String password) {
         if (account == null || password == null) return Result.error().message("用户名或密码为空");
 
-        //TODO 加密，将错误信息放入model重新转到login并显示错误
+        //TODO 加密
         SMember smember = studentService.login(account, password);
 
         if (smember == null) {
@@ -68,10 +68,5 @@ public class UserController {
         Cache.setCached("studentInfo", studentInfo);
         return Result.ok().data("studentInfo", studentInfo);
     }
-
-
-
-
-
 }
 
