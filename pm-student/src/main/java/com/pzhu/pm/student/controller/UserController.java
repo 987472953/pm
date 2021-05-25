@@ -1,9 +1,12 @@
 package com.pzhu.pm.student.controller;
 
+import cn.hutool.json.JSON;
+import cn.hutool.json.JSONUtil;
 import com.pzhu.pm.student.common.Cache;
 import com.pzhu.pm.student.common.Result;
 import com.pzhu.pm.student.config.Swagger2Config;
 import com.pzhu.pm.student.pojo.SMember;
+import com.pzhu.pm.student.pojo.Student;
 import com.pzhu.pm.student.pojo.StudentCourse;
 import com.pzhu.pm.student.pojo.StudentInfoVO;
 import com.pzhu.pm.student.service.StudentService;
@@ -16,6 +19,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author QYstart
@@ -31,11 +35,11 @@ public class UserController {
     @Autowired
     private StringRedisTemplate stringRedisTemplate;
 
-    @GetMapping("/login")
-    @ApiOperation(value = "重定向到登录页面")
-    public String login() {
-        return "login";
-    }
+//    @GetMapping("/login")
+////    @ApiOperation(value = "重定向到登录页面")
+////    public String login() {
+////        return "login";
+////    }
 
     @ApiOperation(value = "输入用户名与密码登录")
     @PostMapping("/login")
@@ -50,23 +54,18 @@ public class UserController {
         if (smember == null) {
             return Result.error().message("用户不存在");
         } else {
-//            stringRedisTemplate.opsForHash().put("login", "student:" + smember.getStudentNo(), smember.toString());
+            //登录成功
+            //stringRedisTemplate.opsForValue().set("user:" + smember.getStudentNo() + ":login", JSONUtil.toJsonStr(smember));
+
+            long startTime = System.currentTimeMillis();
+            Student student = studentService.getSudentById(smember.getStudentNo());
+            stringRedisTemplate.opsForValue().set("user:" + student.getStudentNo() + ":member", JSONUtil.toJsonStr(student), 1, TimeUnit.HOURS);
+            long endTime = System.currentTimeMillis();
+            System.out.println("Redis存储时间：" + (endTime - startTime) + "ms");
+
             return Result.ok().data("user", smember);
         }
     }
 
-    /**
-     * 学生已选课程
-     */
-    @ApiOperation("根据学生ID查询课程信息")
-    @GetMapping("/course/{studentNo}")
-    @ResponseBody
-    public Result getCourse(@PathVariable String studentNo) {
-        if (studentNo == null || studentNo.isEmpty())
-            return Result.error().message("学号为空");
-        List<StudentInfoVO> studentInfo = studentService.selectInfo(studentNo);
-        Cache.setCached("studentInfo", studentInfo);
-        return Result.ok().data("studentInfo", studentInfo);
-    }
 }
 

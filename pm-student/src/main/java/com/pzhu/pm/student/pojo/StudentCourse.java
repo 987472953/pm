@@ -21,6 +21,9 @@ public class StudentCourse implements Serializable {
     private String studentNo;
 
     @Column
+    private Integer teacherNo;
+
+    @Column
     private Integer courseNo;
 
     @Column
@@ -31,6 +34,9 @@ public class StudentCourse implements Serializable {
 
     @Column
     private String project;
+
+    @Column
+    private String projectName;
 
     @Column
     private String schoolTime;

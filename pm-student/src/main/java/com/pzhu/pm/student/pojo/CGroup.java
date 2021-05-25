@@ -17,7 +17,7 @@ public class CGroup implements Serializable {
 
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer studentNo;
+    private String studentNo;
 
     @Column
     private Integer courseNo;
@@ -29,5 +29,5 @@ public class CGroup implements Serializable {
     private Integer group;
 
     @Column
-    private Boolean lead;
+    private Short lead;
 }

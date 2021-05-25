@@ -19,6 +19,10 @@ public class StudentInfoVO implements Serializable {
 
     private Integer courseNo;
 
+    private Integer teacherNo;
+
+    private String teacherName;
+
     private Integer signCount;
 
     private Double mark;

@@ -2,8 +2,10 @@ package com.pzhu.pm.student.pojo;
 
 import lombok.Data;
 import lombok.ToString;
+import org.assertj.core.util.CanIgnoreReturnValue;
 
 import javax.persistence.Column;
+import javax.persistence.Transient;
 import java.io.Serializable;
 
 /**
@@ -19,4 +21,11 @@ public class TeacherCourse implements Serializable {
 
     @Column
     private Integer courseNo;
+
+    @Column
+    private Integer limitNum;
+
+    @Column
+    private Integer count;
+
 }

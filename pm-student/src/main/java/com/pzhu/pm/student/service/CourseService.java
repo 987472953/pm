@@ -21,7 +21,7 @@ public interface CourseService {
      *  @param courseNo
      * @param studentNo
      */
-    StudentCourse removeCourseByStu(String courseNo, String studentNo);
+    StudentCourse removeCourseByStu(Integer courseNo, String studentNo);
 
     /**
      * 选课
@@ -29,5 +29,5 @@ public interface CourseService {
      * @param courseNo
      * @return
      */
-    StudentCourse takeCourse(String studentNo, Integer courseNo);
+    StudentCourse takeCourse(String studentNo, Integer courseNo, Integer teacherNo);
 }

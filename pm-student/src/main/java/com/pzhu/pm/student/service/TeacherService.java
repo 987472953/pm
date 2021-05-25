@@ -1,6 +1,7 @@
 package com.pzhu.pm.student.service;
 
 import com.pzhu.pm.student.pojo.Teacher;
+import com.pzhu.pm.student.pojo.TeacherCourse;
 
 import java.util.List;
 
@@ -11,4 +12,5 @@ public interface TeacherService {
      * @return
      */
     List<Teacher> findTeacherByCourseNo(String courseNo);
+
 }
